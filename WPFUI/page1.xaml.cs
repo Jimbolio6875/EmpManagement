@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,13 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using FirstFloor.ModernUI.Windows.Controls;
 
 namespace WPFUI
 {
-
-    public partial class MainWindow : ModernWindow
+    /// <summary>
+    /// Interaction logic for page1.xaml
+    /// </summary>
+    public partial class page1 : UserControl
     {
-
+        public page1()
+        {
+            InitializeComponent();
+        }
     }
 }
