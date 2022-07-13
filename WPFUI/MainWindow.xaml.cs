@@ -43,32 +43,30 @@ namespace WPFUI
             Application.Current.MainWindow?.OnApplyTemplate();
         }
 
+        EmployeeDBEntities objContext = new EmployeeDBEntities();
         private void GetData()
-
         {
+            EmployeeDataGrid.ItemsSource = objContext.Employees.ToList();
+        }
 
-            string connString = ConfigurationManager.ConnectionStrings["connEmployee"].ConnectionString;
-
-            string cmdString = string.Empty;
-
-            using (SqlConnection con = new SqlConnection(connString))
-
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            Employee objEmpToEdit = EmployeeDataGrid.SelectedItem as Employee;
+            if (objEmpToEdit == null)
             {
-
-                cmdString = "SELECT ID, FirstName, LastName FROM Employee";
-
-                SqlCommand sqlCmd = new SqlCommand(cmdString, con);
-
-                SqlDataAdapter sda = new SqlDataAdapter(sqlCmd);
-
-                DataTable dt = new DataTable("Employee");
-
-                sda.Fill(dt);
-
-                EmployeeDataGrid.ItemsSource = dt.DefaultView;
-
+                MessageBox.Show("Cannot delete the blank Entry");
             }
+            else
+            {
+                objContext.Employees.Remove(objEmpToEdit);
+                objContext.SaveChanges();
+                MessageBox.Show("Record Deleted..");
+            }
+        }
 
+        private void EmployeeDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Employee objEmpToEdit = EmployeeDataGrid.SelectedItem as Employee;
         }
     }
 }

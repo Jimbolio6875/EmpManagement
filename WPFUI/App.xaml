@@ -9,6 +9,10 @@
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <SolidColorBrush x:Key="RGBColor" Color="#454449"/>
+            <Style x:Key="MyStyle" TargetType="{x:Type Window}">
+                <Setter Property="Background" Value="{StaticResource RGBColor}" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

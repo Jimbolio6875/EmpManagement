@@ -4,10 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"        
         xmlns:local="clr-namespace:WPFUI"
-        xmlns:hc="https://handyorg.github.io/handycontrol"
-        mc:Ignorable="d"
+        mc:Ignorable="d" Style="{DynamicResource MyStyle}"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid xmlns:hc="pack://application:,,,/HandyControl;component/Themes/Theme.xaml">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="auto"/>
@@ -27,8 +26,20 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <DataGrid Name="EmployeeDataGrid" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="5">
-            
+        <DataGrid Name="EmployeeDataGrid" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="5" AutoGenerateColumns="False" CanUserDeleteRows="True" SelectionChanged="EmployeeDataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID, Mode=TwoWay}" x:Name="EmployeeIDDatagrid"/>
+                <DataGridTextColumn Header="First Name" Binding="{Binding FirstName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" x:Name="EmployeeFNDatagrid"/>
+                <DataGridTextColumn Header="Last Name" Binding="{Binding LastName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" x:Name="EmployeeLNDatagrid"/>
+                <DataGridTemplateColumn Header="Delete">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="DeleteButton" Content="Delete"
+                            Command="Delete" Click="DeleteButton_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </Window>
