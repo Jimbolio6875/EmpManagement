@@ -22,11 +22,13 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <DataGrid Name="EmployeeDataGrid" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="5" AutoGenerateColumns="False" CanUserDeleteRows="True" SelectionChanged="EmployeeDataGrid_SelectionChanged">
+        <DataGrid Name="EmployeeDataGrid" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="5" AutoGenerateColumns="False" CanUserDeleteRows="True" SelectionChanged="EmployeeDataGrid_SelectionChanged" Margin="0,0,0,15">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding ID, Mode=TwoWay}" x:Name="EmployeeIDDatagrid"/>
                 <DataGridTextColumn Header="First Name" Binding="{Binding FirstName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" x:Name="EmployeeFNDatagrid"/>
@@ -41,5 +43,9 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <TextBox x:Name="IDTextBox" Text="ID" Grid.Column="1" Grid.Row="6"/>
+        <TextBox x:Name="FNTextBox" Text="First Name" Grid.Column="2" Grid.Row="6" Margin="10, 0, 10, 0"/>
+        <TextBox x:Name="LNTextBox" Text="Last Name" Grid.Column="3" Grid.Row="6"/>
+        <Button x:Name="SubmitButton" Content="Submit" Grid.Column="4" Grid.Row="6" Margin="15, 0, 0, 0" Click="SubmitButton_Click"/>
     </Grid>
 </Window>

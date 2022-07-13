@@ -68,5 +68,19 @@ namespace WPFUI
         {
             Employee objEmpToEdit = EmployeeDataGrid.SelectedItem as Employee;
         }
+
+        private void SubmitButton_Click(object sender, RoutedEventArgs e)
+        {
+            Employee objEmpToAdd = new Employee();
+            objEmpToAdd.ID = int.Parse(IDTextBox.Text);
+            objEmpToAdd.FirstName = FNTextBox.Text;
+            objEmpToAdd.LastName = LNTextBox.Text;
+
+            objContext.Employees.Add(objEmpToAdd);
+            objContext.SaveChanges();
+
+            EmployeeDataGrid.ClearValue(ItemsControl.ItemsSourceProperty);
+            EmployeeDataGrid.ItemsSource = objContext.Employees.ToList(); ;
+        }
     }
 }
