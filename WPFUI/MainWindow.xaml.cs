@@ -27,6 +27,7 @@ namespace WPFUI
     {
         public MainWindow()
         {
+            // change to dark theme and load datagrid data
             InitializeComponent();
             UpdateSkin(SkinType.Dark);
             GetData();
@@ -34,6 +35,7 @@ namespace WPFUI
 
         public void UpdateSkin(SkinType skin)
         {
+            // a bunch of stuff from HandyControl package to change theme and look of user controls
             SharedResourceDictionary.SharedDictionaries.Clear();
             Resources.MergedDictionaries.Add(ResourceHelper.GetSkin(skin));
             Resources.MergedDictionaries.Add(new ResourceDictionary
@@ -43,14 +45,18 @@ namespace WPFUI
             Application.Current.MainWindow?.OnApplyTemplate();
         }
 
-        EmployeeDBEntities objContext = new EmployeeDBEntities();
+        // instantiate new EmpDBEntity
+        EmpDBEntities1 objContext = new EmpDBEntities1();
         private void GetData()
         {
+            // load item source of datagrid with list of emps from empDBEntity
             EmployeeDataGrid.ItemsSource = objContext.Employees.ToList();
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
+            // stores selected row of datagrid as new Employee
+            // Removes stored Employee from Emp DB table and saves changes
             Employee objEmpToEdit = EmployeeDataGrid.SelectedItem as Employee;
             if (objEmpToEdit == null)
             {
@@ -69,16 +75,26 @@ namespace WPFUI
             Employee objEmpToEdit = EmployeeDataGrid.SelectedItem as Employee;
         }
 
+
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
+            // new Employee instantiated
+            // adds textbox info to Employee properties
             Employee objEmpToAdd = new Employee();
             objEmpToAdd.ID = int.Parse(IDTextBox.Text);
             objEmpToAdd.FirstName = FNTextBox.Text;
             objEmpToAdd.LastName = LNTextBox.Text;
 
+            // adds new Employee to Emp DB table and saves changes
             objContext.Employees.Add(objEmpToAdd);
             objContext.SaveChanges();
 
+            IDTextBox.Clear();
+            FNTextBox.Clear();
+            LNTextBox.Clear();
+
+            // immediately adds new employee to datagrid view so you can view change without restarting program
+            // apparently not a good method, but it works for now
             EmployeeDataGrid.ClearValue(ItemsControl.ItemsSourceProperty);
             EmployeeDataGrid.ItemsSource = objContext.Employees.ToList(); ;
         }

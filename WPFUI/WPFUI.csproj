@@ -65,23 +65,23 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CompanyEDMX.Context.cs">
+    <Compile Include="EmpDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CompanyEDMX.Context.tt</DependentUpon>
+      <DependentUpon>EmpDB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="CompanyEDMX.cs">
+    <Compile Include="EmpDB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CompanyEDMX.tt</DependentUpon>
+      <DependentUpon>EmpDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="CompanyEDMX.Designer.cs">
+    <Compile Include="EmpDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CompanyEDMX.edmx</DependentUpon>
+      <DependentUpon>EmpDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Employee.cs">
-      <DependentUpon>CompanyEDMX.tt</DependentUpon>
+      <DependentUpon>EmpDB.tt</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -103,12 +103,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="CompanyEDMX.edmx">
+    <EntityDeploy Include="EmpDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CompanyEDMX.Designer.cs</LastGenOutput>
+      <LastGenOutput>EmpDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="CompanyEDMX.edmx.diagram">
-      <DependentUpon>CompanyEDMX.edmx</DependentUpon>
+    <None Include="EmpDB.edmx.diagram">
+      <DependentUpon>EmpDB.edmx</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -136,19 +136,19 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CompanyEDMX.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CompanyEDMX.edmx</DependentUpon>
-      <LastGenOutput>CompanyEDMX.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="CompanyEDMX.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CompanyEDMX.edmx</DependentUpon>
-      <LastGenOutput>CompanyEDMX.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="EmpDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EmpDB.edmx</DependentUpon>
+      <LastGenOutput>EmpDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EmpDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EmpDB.edmx</DependentUpon>
+      <LastGenOutput>EmpDB.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

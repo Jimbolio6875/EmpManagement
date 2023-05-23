@@ -13,10 +13,10 @@ namespace WPFUI
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EmployeeDBEntities : DbContext
+    public partial class EmpDBEntities1 : DbContext
     {
-        public EmployeeDBEntities()
-            : base("name=EmployeeDBEntities")
+        public EmpDBEntities1()
+            : base("name=EmpDBEntities1")
         {
         }
     

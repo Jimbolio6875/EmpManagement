@@ -2,13 +2,20 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"        
-        xmlns:local="clr-namespace:WPFUI"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+        xmlns:local="clr-namespace:WPFUI" xmlns:hc1="https://handyorg.github.io/handycontrol"
         mc:Ignorable="d" Style="{DynamicResource MyStyle}"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
     <Grid xmlns:hc="pack://application:,,,/HandyControl;component/Themes/Theme.xaml">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
@@ -24,11 +31,12 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <DataGrid Name="EmployeeDataGrid" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="5" AutoGenerateColumns="False" CanUserDeleteRows="True" SelectionChanged="EmployeeDataGrid_SelectionChanged" Margin="0,0,0,15">
+        <DataGrid Name="EmployeeDataGrid" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="4" AutoGenerateColumns="False" CanUserDeleteRows="True" SelectionChanged="EmployeeDataGrid_SelectionChanged" Margin="0,0,15,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding ID, Mode=TwoWay}" x:Name="EmployeeIDDatagrid"/>
                 <DataGridTextColumn Header="First Name" Binding="{Binding FirstName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" x:Name="EmployeeFNDatagrid"/>
@@ -43,9 +51,18 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox x:Name="IDTextBox" Text="ID" Grid.Column="1" Grid.Row="6"/>
-        <TextBox x:Name="FNTextBox" Text="First Name" Grid.Column="2" Grid.Row="6" Margin="10, 0, 10, 0"/>
-        <TextBox x:Name="LNTextBox" Text="Last Name" Grid.Column="3" Grid.Row="6"/>
-        <Button x:Name="SubmitButton" Content="Submit" Grid.Column="4" Grid.Row="6" Margin="15, 0, 0, 0" Click="SubmitButton_Click"/>
+        <TextBlock Text="Enter ID" Grid.Column="5" Grid.Row="1" Margin="10, 7, 10, 5" Height="20"
+                   Visibility="{Binding ElementName=IDTextBox, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" IsHitTestVisible="False"/>
+        <TextBox x:Name="IDTextBox" Grid.Column="5" Grid.Row="1" Background="Transparent" BorderThickness="2" BorderBrush="Black" Height="37" Margin="4, 0, 4, 0"/>
+        
+        <TextBlock Text="First Name" Grid.Column="6" Grid.Row="1" Margin="10, 7, 10, 5" Height="20"
+                   Visibility="{Binding ElementName=FNTextBox, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" IsHitTestVisible="False"/>
+        <TextBox x:Name="FNTextBox" Grid.Column="6" Grid.Row="1"  Background="Transparent" BorderThickness="2" BorderBrush="Black" Height="37" Margin="4, 0, 4, 0"/>
+
+        <TextBlock Text="Last Name" Grid.Column="7" Grid.Row="1" Margin="10, 7, 10, 5" Height="20"
+                   Visibility="{Binding ElementName=LNTextBox, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" IsHitTestVisible="False"/>
+        <TextBox x:Name="LNTextBox" Grid.Column="7" Grid.Row="1" Background="Transparent" BorderThickness="2" BorderBrush="Black" Height="37" Margin="4, 0, 4, 0"/>
+        
+        <Button x:Name="SubmitButton" Content="Submit" Grid.Column="8" Grid.Row="1" Margin="5, 7, 5, 7" Click="SubmitButton_Click"/>
     </Grid>
 </Window>
